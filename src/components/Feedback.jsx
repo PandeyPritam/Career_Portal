@@ -32,6 +32,12 @@ function Feedback() {
             description: "Career Portal's resources helped me transition into a new role seamlessly. Thank you!",
             image: " https://media.istockphoto.com/id/1356386941/photo/mature-man-looking-at-a-digital-tablet-that-a-colleague-is-showing-at-work.jpg?s=612x612&w=0&k=20&c=EQX9lSvl9cZsa6Ff4JrYtlyDLJwijWZfo84GC9C7otc=",
         },
+        {
+            name: "Chris Brown",
+            profile: "DevOps Engineer at Netflix",
+            description: "Career Portal's resources helped me transition into a new role seamlessly. Thank you!",
+            image: " https://media.istockphoto.com/id/1356386941/photo/mature-man-looking-at-a-digital-tablet-that-a-colleague-is-showing-at-work.jpg?s=612x612&w=0&k=20&c=EQX9lSvl9cZsa6Ff4JrYtlyDLJwijWZfo84GC9C7otc=",
+        },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);

@@ -7,19 +7,20 @@ import FeaturedIn from "./FeatureIn";
 function Home() {
   return (
     <>
+      {/* Hero Section */}
       <div
         className="hero bg-base-200"
         style={{
-          minHeight: "80vh", // Reduce the height
-          paddingTop: "20px", // Reduce the margin from the top
-          paddingBottom: "20px", // Add padding to balance the layout
+          minHeight: "80vh",
+          paddingTop: "20px",
+          paddingBottom: "20px",
         }}
       >
         <div
           className="hero-content flex-col lg:flex-row-reverse"
           style={{
-            gap: "20px", // Add spacing between the image and text
-            alignItems: "center", // Center-align content vertically
+            gap: "20px",
+            alignItems: "center",
           }}
         >
           <img
@@ -27,17 +28,19 @@ function Home() {
             className="max-w-sm rounded-lg"
             style={{
               maxWidth: "400px",
-              height: "400px", 
-              objectFit: "cover"
+              height: "400px",
+              objectFit: "cover",
             }}
           />
           <div>
             <h1
-              className="text-9xl  fw-bold"
-              style={{ color: "red" }} // Set the color to orange
+              className="text-9xl fw-bold"
+              style={{ color: "red" }}
             >
               Welcome to Career Portal !!<br />
-              <span className="font-bold animated-span mt-12"> Your Gateway to Success!</span>
+              <span className="font-bold animated-span mt-12">
+                Your Gateway to Success!
+              </span>
             </h1>
             <p className="py-6 text-lg">
               Find Your Dream Job, Explore Opportunities, and Build Your Future!
@@ -48,45 +51,63 @@ function Home() {
         </div>
       </div>
 
+      {/* Achievements Section */}
+      <div id="achievements">
+        <Ourachivment />
+      </div>
+
+      {/* Feedback Section */}
+      <div id="featured">
+        <Feedback />
+      </div>
+
+      {/* Featured Section */}
       <div>
-        <Herosection />
-        <div className="container my-5">
-          <h2 className="text-center fw-bold">Why Choose Career Portal?</h2>
-          <div className="row mt-4">
-            <div className="col-md-4">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Expert Mentors</h5>
-                  <p className="card-text">Learn from industry leaders and experts.</p>
-                </div>
+        <FeaturedIn />
+      </div>
+
+      {/* Blog Section */}
+      <div id="blog" className="container my-5">
+        <h2 className="text-center fw-bold">Our Blog</h2>
+        <p className="text-center">
+          Stay updated with the latest career tips, industry trends, and success stories.
+        </p>
+        <div className="row mt-4">
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">How to Ace Your Next Interview</h5>
+                <p className="card-text">
+                  Learn the best tips and tricks to impress your interviewer and land your dream job.
+                </p>
+                <button className="btn btn-primary">Read More</button>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Top Courses</h5>
-                  <p className="card-text">Access a wide range of courses tailored to your needs.</p>
-                </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">Top 10 Skills in Demand</h5>
+                <p className="card-text">
+                  Discover the skills that employers are looking for in 2025 and beyond.
+                </p>
+                <button className="btn btn-primary">Read More</button>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="card h-100">
-                <div className="card-body text-center">
-                  <h5 className="card-title">Career Opportunities</h5>
-                  <p className="card-text">Get connected with top companies and recruiters.</p>
-                </div>
+          </div>
+          <div className="col-md-4">
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">Building a Winning Resume</h5>
+                <p className="card-text">
+                  Learn how to create a resume that stands out and gets noticed by recruiters.
+                </p>
+                <button className="btn btn-primary">Read More</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Ourachivment/>
-      <Feedback />
-      <FeaturedIn />
-
-
-      
-
     </>
   );
 }

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import axios from "../api/api";
-
 function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
   const [courses, setCourses] = useState([]);
-
-  const handleSearch = async () => {
+ const handleSearch = async () => {
     try {
       const response = await axios.get(`/courses/search?query=${searchQuery}`);
       setCourses(response.data.courses);

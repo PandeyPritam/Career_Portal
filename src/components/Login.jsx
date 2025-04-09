@@ -8,9 +8,9 @@ function Login() {
     email: "",
     password: "",
   });
-  const [alertMessage, setAlertMessage] = useState(""); // State for alert message
-  const [alertType, setAlertType] = useState(""); // State for alert type (success or error)
-  const [isLoading, setIsLoading] = useState(false); // State for loader
+  const [alertMessage, setAlertMessage] = useState(""); 
+  const [alertType, setAlertType] = useState(""); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,32 +19,24 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true); // Show loader
+    setIsLoading(true);
 
     try {
       const response = await axios.post("/auth/login", formData);
       console.log("Login Response:", response.data);
-
-      // Save token to localStorage
       localStorage.setItem("token", response.data.token);
-
-      // Show success alert
       setAlertMessage("Login successful!");
       setAlertType("success");
-      if (response.data.isAdmin) {
-        navigate("/admin"); 
-      }
       setTimeout(() => {
-        setIsLoading(false); // Hide loader
+        setIsLoading(false);
         window.location.href = "/dashboard";
       }, 2000);
     } catch (error) {
       console.error("Login Error:", error.response?.data || error.message);
 
-      // Show error alert
       setAlertMessage(error.response?.data?.error || "An error occurred during login.");
       setAlertType("error");
-      setIsLoading(false); // Hide loader
+      setIsLoading(false);
     }
   };
 

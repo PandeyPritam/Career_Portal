@@ -10,7 +10,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Register />} />

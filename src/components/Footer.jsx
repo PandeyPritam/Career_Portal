@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer
       className="footer footer-horizontal footer-center text-white p-10"
-      style={{ backgroundColor: "#343a40" }} // Changed background color to dark gray
+      style={{ backgroundColor: "#343a40" }}
     >
       <nav className="grid grid-flow-col gap-4">
         <a className="link link-hover text-white">About us</a>
@@ -51,8 +51,7 @@ function Footer() {
       </nav>
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All rights reserved by ACME
-          Industries Ltd
+          Copyright © {new Date().getFullYear()} - All rights reserved by CIMAGE 
         </p>
       </aside>
     </footer>
