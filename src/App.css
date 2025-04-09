@@ -156,3 +156,105 @@ body {
 .text-center {
   text-align: center;
 }
+.animated-span {
+  color: black; /* Set the color to black */
+  display: inline-block;
+  animation: fadeIn 2s infinite; /* Add animation */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.stat-icon {
+  margin-bottom: 10px;
+}
+.carousel-item {
+  padding: 20px;
+}
+
+.carousel-item img {
+  border: 3px solid #007bff;
+}
+
+.carousel-item h5 {
+  color: #007bff;
+}
+
+.carousel-item p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+/* Increase the height and width of cards */
+.card {
+  width: 350px;
+  height: 350px; /* Increased height */
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+  overflow: hidden; /* Prevent text overflow */
+}
+
+/* Ensure images fit properly */
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Adjust hero section */
+.hero-section {
+  padding: 50px 20px; /* Add padding to prevent overflow */
+  min-height: 100vh; /* Ensure full height */
+  box-sizing: border-box;
+}
+
+/* Adjust general container styles */
+.container {
+  max-width: 1200px; /* Increase container width */
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Adjust carousel items */
+.carousel-item {
+  padding: 20px;
+  width: 100%; /* Ensure carousel items fit properly */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Adjust text overflow */
+.card-title,
+.card-text {
+  white-space: normal; /* Allow text to wrap */
+  overflow: hidden; /* Prevent text overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+}
+.featured-in img {
+  transition: transform 0.3s ease;
+}
+
+.featured-in img:hover {
+  transform: scale(1.1);
+}
+
+.featured-in p {
+  font-size: 1rem;
+  color: #6c757d;
+}

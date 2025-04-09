@@ -6,14 +6,17 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import axios from "../api/api"; // Ensure axios is imported
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 function Register() {
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
+    role: "user", // Default role set to "user"
   });
   const [alertMessage, setAlertMessage] = useState(""); // State for alert message
   const [isLoading, setIsLoading] = useState(false); // State for loader
@@ -25,6 +28,7 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
 
     // Check if any field is empty
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
@@ -44,7 +48,11 @@ function Register() {
       console.log("Sending request to:", axios.defaults.baseURL + "/api/auth/register");
       const response = await axios.post("/auth/register", formData);
       console.log("Signup Response:", response.data);
-
+      if (formData.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard"); // Navigate to user dashboard
+      }
       setAlertMessage("Registration successful! Redirecting to login...");
       setTimeout(() => {
         setIsLoading(false); // Hide loader
@@ -53,7 +61,7 @@ function Register() {
     } catch (error) {
       console.error("Signup Error:", error.response?.data || error.message);
       setAlertMessage(error.response?.data?.error || "An error occurred during registration.");
-      setIsLoading(false); // Hide loader
+      setIsLoading(false);
     }
   };
 
@@ -138,14 +146,18 @@ function Register() {
               </InputGroup>
             </Form.Group>
           </Col>
-          <Form.Group className="mb-3 mt-4">
-            <Form.Check
-              required
-              label="Agree to terms and conditions"
-              feedback="You must agree before submitting."
-              feedbackType="invalid"
-            />
-          </Form.Group>
+          <div className="mb-3">
+            <label className="form-label">Role</label>
+            <select
+              className="form-select"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
           <Button type="submit" className="w-100" disabled={isLoading}>
             {isLoading ? (
               <span>

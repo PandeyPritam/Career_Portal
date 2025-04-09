@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,8 +31,9 @@ function Login() {
       // Show success alert
       setAlertMessage("Login successful!");
       setAlertType("success");
-
-      // Redirect to dashboard after 2 seconds
+      if (response.data.isAdmin) {
+        navigate("/admin"); 
+      }
       setTimeout(() => {
         setIsLoading(false); // Hide loader
         window.location.href = "/dashboard";

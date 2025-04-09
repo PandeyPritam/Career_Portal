@@ -39,7 +39,7 @@ function Dashboard() {
 
   return (
     <div className="container my-5">
-      <h2 className="text-center text-primary">Welcome to the Dashboard</h2>
+      <h2 className="text-center  fw-bold ">Welcome to the Dashboard</h2>
       {user ? (
         <div className="card mt-4">
           <div className="card-body">
