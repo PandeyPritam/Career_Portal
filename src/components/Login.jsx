@@ -7,9 +7,10 @@ function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: "user", // Default role is "user"
   });
-  const [alertMessage, setAlertMessage] = useState(""); 
-  const [alertType, setAlertType] = useState(""); 
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -20,22 +21,26 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-
+  
     try {
+      console.log("Form Data Sent to Backend:", formData); // Debugging log
       const response = await axios.post("/auth/login", formData);
       console.log("Login Response:", response.data);
       localStorage.setItem("token", response.data.token);
+  
       setAlertMessage("Login successful!");
       setAlertType("success");
-      setTimeout(() => {
-        setIsLoading(false);
-        window.location.href = "/dashboard";
-      }, 2000);
+      if (response.data.isAdmin) {
+        navigate("/admin"); // Redirect to admin panel
+      } else {
+        navigate("/dashboard"); // Redirect to user dashboard
+      }
     } catch (error) {
       console.error("Login Error:", error.response?.data || error.message);
-
+  
       setAlertMessage(error.response?.data?.error || "An error occurred during login.");
       setAlertType("error");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -95,6 +100,31 @@ function Login() {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="form-group">
+            <label>Role</label>
+            <div>
+              <label className="me-3">
+                <input
+                  type="radio"
+                  name="role"
+                  value="user"
+                  checked={formData.role === "user"}
+                  onChange={handleChange}
+                />{" "}
+                User
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="role"
+                  value="admin"
+                  checked={formData.role === "admin"}
+                  onChange={handleChange}
+                />{" "}
+                Admin
+              </label>
+            </div>
           </div>
           <button type="submit" className="btn btn-primary w-100 mt-3" disabled={isLoading}>
             {isLoading ? (

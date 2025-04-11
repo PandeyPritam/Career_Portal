@@ -3,8 +3,23 @@ import Herosection from "./Herosection";
 import Ourachivment from "./Ourachivment";
 import Feedback from "./Feedback";
 import FeaturedIn from "./FeatureIn";
+import { useEffect, useState } from "react";
+import axios from "../api/api"; // Adjust the import path as necessary
 
 function Home() {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get("/blogs");
+        setBlogs(response.data.blogs);
+      } catch (error) {
+        console.error("Error fetching blogs:", error.response?.data || error.message);
+      }
+    };
+    fetchBlogs();
+  }, []);
   return (
     <>
       {/* Hero Section */}
@@ -50,64 +65,40 @@ function Home() {
           </div>
         </div>
       </div>
-
-      {/* Achievements Section */}
+      <Herosection />
       <div id="achievements">
         <Ourachivment />
       </div>
-
-      {/* Feedback Section */}
       <div id="featured">
         <Feedback />
       </div>
-
-      {/* Featured Section */}
       <div>
         <FeaturedIn />
       </div>
 
+
       {/* Blog Section */}
-      <div id="blog" className="container my-5">
-        <h2 className="text-center fw-bold">Our Blog</h2>
-        <p className="text-center">
-          Stay updated with the latest career tips, industry trends, and success stories.
-        </p>
-        <div className="row mt-4">
-          <div className="col-md-4">
+      <div className="container my-5">
+      <h2 className="text-center fw-bold">Latest Blogs</h2>
+      <div className="row">
+        {blogs.map((blog) => (
+          <div className="col-md-4 mb-4" key={blog._id}>
             <div className="card h-100">
               <div className="card-body">
-                <h5 className="card-title">How to Ace Your Next Interview</h5>
-                <p className="card-text">
-                  Learn the best tips and tricks to impress your interviewer and land your dream job.
-                </p>
-                <button className="btn btn-primary">Read More</button>
+                <h5 className="card-title">{blog.title}</h5>
+                <p className="card-text">{blog.content.substring(0, 100)}...</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => alert(blog.content)}
+                >
+                  Read More
+                </button>
               </div>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="card h-100">
-              <div className="card-body">
-                <h5 className="card-title">Top 10 Skills in Demand</h5>
-                <p className="card-text">
-                  Discover the skills that employers are looking for in 2025 and beyond.
-                </p>
-                <button className="btn btn-primary">Read More</button>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card h-100">
-              <div className="card-body">
-                <h5 className="card-title">Building a Winning Resume</h5>
-                <p className="card-text">
-                  Learn how to create a resume that stands out and gets noticed by recruiters.
-                </p>
-                <button className="btn btn-primary">Read More</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
+    </div>
     </>
   );
 }
